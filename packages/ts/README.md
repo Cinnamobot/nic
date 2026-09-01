@@ -12,57 +12,87 @@
 ## インストール
 
 ```bash
-# グローバル（またはプロジェクト）にインストール
+# グローバル（またはプロジェクト）にインストール（おすすめ）
 npm install -g @cinnamobot/nic
 
-# npx で直接実行（インストール不要）
-npx @cinnamobot/nic weather --station 長岡
+# 以降、ターミナルでそのまま使える
+ngt weather --station 長岡
 ```
 
-### CLI（`nic`）
+### npx で直接実行する場合（インストール不要）
+
+> ⚠️ **注意**: パッケージ名は `@cinnamobot/nic` ですが、コマンド名は `ngt` です。
+> `npx @cinnamobot/nic` と書くと「nic というコマンドがない」とエラーになるため、
+> **`-p`（package）オプションでパッケージを指定し、実行コマンドを明示**してください。
 
 ```bash
-nic weather --station 長岡   # 気温・降水量（気象庁アメダス）
-nic snow --rank              # 積雪ランキング（冬季のみ）
-nic warning --level 市町村   # 警報・注意報（気象庁防災情報XML）
-nic tour --onsen             # 温泉スポット（新潟市オープンデータ）
-nic tour --irikomi           # 観光入込客数
-nic stats --population       # 人口（新潟県オープンデータ）
-nic search 湯沢              # 全データ横断検索
+# ✅ 正しい（-p でパッケージ指定 + コマンド名を明示）
+npx -y -p @cinnamobot/nic ngt weather --station 長岡
+
+# ❌ エラーになる例（パッケージ名 = コマンド名と誤解される）
+# npx -y @cinnamobot/nic weather --station 長岡
+```
+
+### AI エージェントのツールとして使う場合
+
+エージェント（Claude / Codex / Cursor 等）のシェルツール定義には、
+**グローバルインストール後の `ngt` 直接実行**が最も確実です（npx の解決遅延・キャッシュ問題を避けられる）。
+
+```bash
+# セットアップ（一度だけ）
+npm install -g @cinnamobot/nic
+
+# エージェントにはこれだけ渡す
+ngt weather --station 新潟 --json
+ngt warning --level 市町村 --json
+```
+
+### CLI（`ngt`）
+
+```bash
+ngt weather --station 長岡   # 気温・降水量（気象庁アメダス）
+ngt snow --rank              # 積雪ランキング（冬季のみ）
+ngt warning --level 市町村   # 警報・注意報（気象庁防災情報XML）
+ngt tour --onsen             # 温泉スポット（新潟市オープンデータ）
+ngt tour --irikomi           # 観光入込客数
+ngt stats --population       # 人口（新潟県オープンデータ）
+ngt search 湯沢              # 全データ横断検索
 
 # 共通オプション
-nic weather --station 長岡 --json   # JSON 出力（AI 向け）
-nic weather --force                 # キャッシュ無視で再取得
+ngt weather --station 長岡 --json   # JSON 出力（AI 向け）
+ngt weather --force                 # キャッシュ無視で再取得
 ```
 
 - 出力はプレーンな表形式（AI がパースしやすく、装飾なし）
 - `--json` で機械可読出力
 - エラー時は「なぜ失敗したか」をヒント付きで返す（例: 積雪データは冬季のみ提供）
 
-### MCP サーバー（`nic-mcp`）
+### MCP サーバー（`ngt-mcp`）
 
 MCP（Model Context Protocol）対応クライアント（Claude Desktop / Cursor 等）から使える。
-`@cinnamobot/nic` をインストールすると `nic-mcp` バイナリが使えるようになる。
+`@cinnamobot/nic` をインストールすると `ngt-mcp` バイナリが使えるようになる。
+
+**グローバルインストール済みの場合（推奨・確実）:**
 
 ```jsonc
 // claude_desktop_config.json
 {
   "mcpServers": {
     "nic": {
-      "command": "npx",
-      "args": ["-y", "@cinnamobot/nic", "mcp"]
+      "command": "ngt-mcp"
     }
   }
 }
 ```
 
-または `nic-mcp` バイナリを直接指定（npm でインストール済みの場合）:
+**インストールせず npx で起動する場合（`-p` 指定が必要）:**
 
 ```jsonc
 {
   "mcpServers": {
     "nic": {
-      "command": "nic-mcp"
+      "command": "npx",
+      "args": ["-y", "-p", "@cinnamobot/nic", "ngt-mcp"]
     }
   }
 }
@@ -80,8 +110,8 @@ MCP（Model Context Protocol）対応クライアント（Claude Desktop / Curso
 | `get_niigata_stats` | 統計・オープンデータ（人口・道の駅・データセット） |
 | `search_niigata_data` | 全データ横断検索 |
 
-※ `npx -y @cinnamobot/nic mcp` はパッケージ内の `nic-mcp` バイナリを起動する。
-詳細は [package.json](package.json) の `bin` を参照。
+※ npx で起動する場合は必ず `-p @cinnamobot/nic` を付け、実行コマンドを `ngt-mcp` と明示する。
+詳細は [package.json](package.json) の `bin` を参照（`ngt` / `ngt-mcp`）。
 
 ---
 

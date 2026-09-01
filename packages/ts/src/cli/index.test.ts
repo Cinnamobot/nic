@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
-import { buildProgram } from "./index.js";
+import { buildProgram, VERSION } from "./index.js";
 import iconv from "iconv-lite";
 import type { Command } from "commander";
 
@@ -107,7 +107,7 @@ describe("CLI", () => {
   it("shows version", async () => {
     const program = buildProgram();
     const { stdout } = await run(program, ["--version"]);
-    expect(stdout).toContain("0.1.0");
+    expect(stdout).toContain(VERSION);
   });
 
   it("snow outputs table", async () => {

@@ -1,6 +1,6 @@
 {
   "name": "@cinnamobot/nic",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "Niigata Information Connector (NIC) — 新潟県の情報（気象・統計・観光・防災・オープンデータ）にアクセスする CLI / MCP ツールキット",
   "keywords": [
     "niigata",
@@ -17,8 +17,8 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "nic": "./dist/cli/index.js",
-    "nic-mcp": "./dist/mcp/index.js"
+    "ngt": "dist/cli/index.js",
+    "ngt-mcp": "dist/mcp/index.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

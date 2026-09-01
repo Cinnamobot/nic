@@ -23,7 +23,9 @@ import { TourismClient, TourismError, SOURCE_TEXT as TOURISM_SOURCE, SOURCE_URL 
 import { WarningClient, WarningError, SOURCE_TEXT as WARNING_SOURCE, type WarningArea, type WarningData } from "../core/warning.js";
 import { getAreas, hasWarning, statusSummary, summary as warningSummary } from "../core/warning.js";
 
-export const VERSION = "0.1.0";
+import pkg from "../../package.json" with { type: "json" };
+
+export const VERSION: string = pkg.version;
 
 /** 表形式の最大表示件数（--limit 未指定時の既定値） */
 const DEFAULT_LIMIT = 20;
@@ -323,7 +325,7 @@ export function buildProgram(): Command {
   const program = new Command();
 
   program
-    .name("nic")
+    .name("ngt")
     .description("新潟県の情報（気象・河川・観光・交通・統計など）にアクセスする CLI ツール。")
     .version(VERSION, "-v, --version", "バージョン情報を表示する。");
 

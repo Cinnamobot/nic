@@ -4,7 +4,9 @@
 
 新潟県の公式データ源（気象庁・新潟県・新潟市・国土交通省）に直接アクセスし、
 必要な情報だけを最小トークンで AI エージェントへ届ける。
-**CLI（`nic` / `ngt`）** と **MCP（`nic-mcp` / `ngt-mcp`）** の 2 つのインターフェースを持つ。
+**CLI（`ngt`）** と **MCP（`ngt-mcp`）** の 2 つのインターフェースを持つ。
+
+> システム名は NIC。コマンド名は Python 版と共通の `ngt` / `ngt-mcp` で統一している。
 
 ```
 あなたのAIアシスタント（Claude / ChatGPT / Cursor など）
@@ -51,8 +53,11 @@ with AmedasClient() as client:
 ### TypeScript 版（npx で即利用）
 
 ```bash
-npx -y @cinnamobot/nic weather --station 長岡   # CLI（インストール不要）
-npx -y @cinnamobot/nic mcp                       # MCP サーバー
+# CLI（インストール不要）※ -p でパッケージ指定し、コマンド名 ngt を明示する
+npx -y -p @cinnamobot/nic ngt weather --station 長岡
+
+# MCP サーバー
+npx -y -p @cinnamobot/nic ngt-mcp
 ```
 
 ```bash

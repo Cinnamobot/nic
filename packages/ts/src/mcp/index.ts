@@ -38,7 +38,9 @@ import { NIIGATA_PREF_CODE, SOURCE_TEXT as WARNING_SOURCE, SOURCE_URL as WARNING
 import { getActiveAreas, statusSummary, summary as warningSummary } from "../core/warning.js";
 import { haversineKm } from "../core/util.js";
 
-export const VERSION = "0.1.0";
+import pkg from "../../package.json" with { type: "json" };
+
+export const VERSION: string = pkg.version;
 
 // アメダス / オープンデータ共通のキャッシュ TTL（秒）
 const MCP_TTL = 300.0;
@@ -717,7 +719,7 @@ function toolToDefinition(t: (typeof TOOL_DEFINITIONS)[number]): Tool {
 export async function main(): Promise<void> {
   const server = new Server(
     {
-      name: "nic",
+      name: "nic", // MCP サーバー名（NIC システム名）
       version: VERSION,
     },
     {
