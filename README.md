@@ -34,6 +34,24 @@ Web 検索で情報を得る場合、AI は検索結果の Web ページ全文�
 一般の AI に「新潟について教えて」と聞くと、**出典の曖昧な情報・古い情報・個人サイトの情報**まで
 混ざって返ってきます。どこまでが確かな情報なのか、利用者には分かりません。
 
+### 従来の AI のフロー（課題の全体像）
+
+```mermaid
+flowchart LR
+    A[ユーザー<br>「新潟で警報出てない？」] --> B[AI アシスタント]
+    B --> C{Web 検索}
+    C --> D[検索結果<br>・他県の情報も混ざる<br>・GEO/AIO で歪む・遅延]
+    D --> E[Web ページ全文を読む<br>トークン大量消費]
+    E --> F[曖昧な回答・出典不明]
+
+    style C fill:#f8d7da,stroke:#dc3545
+    style D fill:#f8d7da,stroke:#dc3545
+    style E fill:#f8d7da,stroke:#dc3545
+    style F fill:#f8d7da,stroke:#dc3545
+```
+
+ユーザーの質問から回答まで、**コスト・正確性・ガードレール**のすべての段階で問題が発生します。
+
 ---
 
 ## 提案: NIC — 新潟に特化した AI を作るデータ基盤
@@ -64,6 +82,24 @@ Web 検索で情報を得る場合、AI は検索結果の Web ページ全文�
 ---
 
 ## 解決: 3 つの課題が、すべて解決する
+
+### NIC を使った AI のフロー（解決の全体像）
+
+```mermaid
+flowchart LR
+    A[ユーザー<br>「新潟で警報出てない？」] --> B[AI アシスタント]
+    B --> C[NIC<br>ngt / ngt-mcp]
+    C --> D[公式データ源<br>気象庁・新潟県・新潟市・国交省]
+    D --> E[必要な値だけ<br>最小トークン]
+    E --> F[正確な回答・出典明記]
+
+    style C fill:#d4edda,stroke:#28a745
+    style D fill:#d4edda,stroke:#28a745
+    style E fill:#d4edda,stroke:#28a745
+    style F fill:#d4edda,stroke:#28a745
+```
+
+ユーザーの質問から回答まで、**コスト・正確性・ガードレール**のすべての段階で問題が解消されます。
 
 | 課題 | Web 検索 | NIC |
 |---|---|---|
