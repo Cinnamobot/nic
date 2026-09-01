@@ -44,10 +44,10 @@ flowchart LR
     D --> E[怪しい・古い場所を<br>そのまま回答]
     E --> F[「この場所、本当にあるの？」<br>信頼できない回答]
 
-    style C fill:#f8d7da,stroke:#dc3545
-    style D fill:#f8d7da,stroke:#dc3545
-    style E fill:#f8d7da,stroke:#dc3545
-    style F fill:#f8d7da,stroke:#dc3545
+    style C fill:#f8d7da,stroke:#dc3545,color:#000
+    style D fill:#f8d7da,stroke:#dc3545,color:#000
+    style E fill:#f8d7da,stroke:#dc3545,color:#000
+    style F fill:#f8d7da,stroke:#dc3545,color:#000
 ```
 
 ユーザーの質問から回答まで、**コスト・正確性・ガードレール**のすべての段階で問題が発生します。
@@ -93,10 +93,10 @@ flowchart LR
     D --> E[実際に存在する施設だけ<br>（住所・電話付き）]
     E --> F[「〇〇公園、△△市××。電話: 025-...」<br>信頼できる回答・出典明記]
 
-    style C fill:#d4edda,stroke:#28a745
-    style D fill:#d4edda,stroke:#28a745
-    style E fill:#d4edda,stroke:#28a745
-    style F fill:#d4edda,stroke:#28a745
+    style C fill:#d4edda,stroke:#28a745,color:#000
+    style D fill:#d4edda,stroke:#28a745,color:#000
+    style E fill:#d4edda,stroke:#28a745,color:#000
+    style F fill:#d4edda,stroke:#28a745,color:#000
 ```
 
 ユーザーの質問から回答まで、**コスト・正確性・ガードレール**のすべての段階で問題が解消されます。
