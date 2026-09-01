@@ -38,11 +38,11 @@ Web 検索で情報を得る場合、AI は検索結果の Web ページ全文�
 
 ```mermaid
 flowchart LR
-    A[ユーザー<br>「新潟で警報出てない？」] --> B[AI アシスタント]
+    A[ユーザー<br>「新潟で子供と遊べるところない？」] --> B[AI アシスタント]
     B --> C{Web 検索}
-    C --> D[検索結果<br>・他県の情報も混ざる<br>・GEO/AIO で歪む・遅延]
-    D --> E[Web ページ全文を読む<br>トークン大量消費]
-    E --> F[曖昧な回答・出典不明]
+    C --> D[検索結果<br>・SEO/GEO 対策された広告記事<br>・閉店済み・移転済みの施設<br>・他所県の情報が混ざる]
+    D --> E[怪しい・古い場所を<br>そのまま回答]
+    E --> F[「この場所、本当にあるの？」<br>信頼できない回答]
 
     style C fill:#f8d7da,stroke:#dc3545
     style D fill:#f8d7da,stroke:#dc3545
@@ -87,11 +87,11 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    A[ユーザー<br>「新潟で警報出てない？」] --> B[AI アシスタント]
-    B --> C[NIC<br>ngt / ngt-mcp]
-    C --> D[公式データ源<br>気象庁・新潟県・新潟市・国交省]
-    D --> E[必要な値だけ<br>最小トークン]
-    E --> F[正確な回答・出典明記]
+    A[ユーザー<br>「新潟で子供と遊べるところない？」] --> B[AI アシスタント]
+    B --> C[NIC<br>ngt tour / ngt search]
+    C --> D[公式データ源<br>新潟市オープンデータ・国土数値情報]
+    D --> E[実際に存在する施設だけ<br>（住所・電話付き）]
+    E --> F[「〇〇公園、△△市××。電話: 025-...」<br>信頼できる回答・出典明記]
 
     style C fill:#d4edda,stroke:#28a745
     style D fill:#d4edda,stroke:#28a745
