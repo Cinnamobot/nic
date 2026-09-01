@@ -1,0 +1,53 @@
+{
+  "name": "@cinnamobot/nic",
+  "version": "0.1.4",
+  "description": "Niigata Information Connector (NIC) — 新潟県の情報（気象・統計・観光・防災・オープンデータ）にアクセスする CLI / MCP ツールキット",
+  "keywords": [
+    "niigata",
+    "new-niigata",
+    "amedas",
+    "jma",
+    "opendata",
+    "mcp",
+    "cli",
+    "agent",
+    "weather",
+    "tourism"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "ngt": "dist/cli/index.js",
+    "ngt-mcp": "dist/mcp/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run build && npm test",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "commander": "^15.0.0",
+    "fast-xml-parser": "^5.11.1",
+    "iconv-lite": "^0.7.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  }
+}
