@@ -23,6 +23,11 @@ wheels/
 .coverage
 htmlcov/
 
+# Node / TypeScript
+node_modules/
+*.tgz
+.pnpm-store/
+
 # IDE / OS
 .idea/
 .vscode/
