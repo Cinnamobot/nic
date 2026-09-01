@@ -154,7 +154,19 @@ with AmedasClient() as client:
     data = client.fetch_precipitation(codes=["54232", "54841"])
 ```
 
-### TypeScript 版（npx で即利用）
+### TypeScript 版（npm パッケージ `@cinnamobot/nic`）
+
+**グローバルインストール（推奨・日常使い・AI エージェントのツールとして）:**
+
+```bash
+npm install -g @cinnamobot/nic
+
+# 以降、ターミナルでそのまま使える
+ngt weather --station 長岡
+ngt-mcp                            # MCP サーバー
+```
+
+**インストールせず npx で一時実行:**
 
 ```bash
 # CLI（インストール不要）※ -p でパッケージ指定し、コマンド名 ngt を明示する
@@ -163,6 +175,8 @@ npx -y -p @cinnamobot/nic ngt weather --station 長岡
 # MCP サーバー
 npx -y -p @cinnamobot/nic ngt-mcp
 ```
+
+**開発（リポジトリから）:**
 
 ```bash
 cd packages/ts
